@@ -1,5 +1,5 @@
-CONFUSION
-=========
+![CONFUSION](https://raw.github.com/cryptosphere/confusion/master/logo.png)
+============
 
 An easy-to-use system for confidential messaging
 
