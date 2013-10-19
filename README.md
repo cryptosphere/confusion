@@ -1,7 +1,12 @@
 ![CONFUSION](https://raw.github.com/cryptosphere/confusion/master/logo.png)
 ============
 
-An easy-to-use system for confidential messaging
+> "The method of *confusion* is to make the relation between the simple
+> statistics of [the ciphertext] and the simple description of [the key] a very
+> complex and involved one" -- Claude Shannon, *Communication Theory of Secrecy
+> Systems*
+
+An easy-to-use system for confidential messaging.
 
 ## Installation
 
