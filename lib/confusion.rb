@@ -1,5 +1,7 @@
 require "confusion/version"
 
 module Confusion
-  # Your code goes here...
+  def self.logger
+    Celluloid.logger
+  end
 end
