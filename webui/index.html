@@ -16,7 +16,6 @@
   <link href="/assets/img/icon.png" rel="shortcut icon" />
 
   <script src="/assets/js/jquery-2.0.3.js"></script>
-  <script src="/assets/js/password.js"></script>
 </head>
 
 <body>
@@ -48,11 +47,13 @@
       <div id="passsphere" class="sphere">
         <div id="passprompt">PASSWORD:</div>
           <input id="passfield" type="password" autofocus="autofocus"></input>
-          <button class="btn btn-default btn-primary" onClick="openSesame();">Unlock</button>
+          <button id="passbutton" class="btn btn-default btn-primary">Unlock</button>
         </div>
       </div>
     </div>
   </div>
 </body>
+
+<script src="/assets/js/password.js"></script>
 
 </html>
