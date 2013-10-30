@@ -16,6 +16,7 @@
   <link href="/assets/img/icon.png" rel="shortcut icon" />
 
   <script src="/assets/js/jquery-2.0.3.js"></script>
+  <script src="/assets/js/password.js"></script>
 </head>
 
 <body>
@@ -54,16 +55,4 @@
   </div>
 </body>
 
-<script>
-  function openSesame() {
-    $("#door-l").css("transform", "translateX(-150%)");
-    $("#door-r").css("transform", "translateX(150%)");
-  }
-
-  $('#passfield').on('keydown', function(e) {
-    if (e.which == 13) {
-      openSesame();
-    }
-  });
-</script>
 </html>

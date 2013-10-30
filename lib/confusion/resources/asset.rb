@@ -1,8 +1,8 @@
-require 'confusion/app'
+require 'confusion/resource'
 
 module Confusion
   module Resources
-    class Asset < Lattice::Resource
+    class Asset < Confusion::Resource
       FILE_LIST  = Dir[File.join(APP_ROOT, "**", "*")].map { |f| f.sub(/^#{APP_ROOT}\//, '') }
 
       def resource_exists?

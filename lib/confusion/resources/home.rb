@@ -1,8 +1,8 @@
-require 'confusion/app'
+require 'confusion/resource'
 
 module Confusion
   module Resources
-    class Home < Lattice::Resource
+    class Home < Confusion::Resource
       def to_html
         # Hax serve a static file!
         File.read File.join(APP_ROOT, "index.html")
