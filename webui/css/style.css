@@ -20,9 +20,10 @@ body {
   overflow: auto;
 }
 
-#logo {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  color: white;
+#welcome {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 48px;
 }
 
 .navbar .brand {
@@ -44,4 +45,8 @@ body {
 
 .sidebar {
   border-right: 1px solid #ddd;
+}
+
+.centered {
+  text-align: center;
 }
