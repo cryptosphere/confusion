@@ -8,6 +8,27 @@
 
 An easy-to-use system for confidential messaging.
 
+---
+
+Like Confusion? Join our mailing list by sending a message to
+[cryptosphere+subscribe@googlegroups.com][subscribe]
+or you can view our [Google Group] on the intarwebs as well.
+
+We're also on IRC at #cryptosphere on irc.freenode.net.
+
+[google group]: https://groups.google.com/group/cryptosphere
+[subscribe]:    mailto:cryptosphere+subscribe@googlegroups.com
+
+### Is it any good?
+
+[Yes.](http://news.ycombinator.com/item?id=3067434)
+
+### Is it "Production Ready™"?
+
+![DANGER: EXPERIMENTAL](https://raw.github.com/cryptosphere/cryptosphere/master/images/experimental.png)
+
+No. Hot crypto smoke. Don't breathe this.
+
 ## Installation
 
 This program is written in Ruby and requires you install Ruby first. We'd like
