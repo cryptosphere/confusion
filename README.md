@@ -1,5 +1,9 @@
 ![CONFUSION](https://raw.github.com/cryptosphere/confusion/master/logo.png)
 ============
+[![Build Status](https://secure.travis-ci.org/cryptosphere/confusion.png?branch=master)](http://travis-ci.org/cryptosphere/confusion)
+[![Code Climate](https://codeclimate.com/github/cryptosphere/confusion.png)](https://codeclimate.com/github/cryptosphere/confusion)
+[![Coverage Status](https://coveralls.io/repos/cryptosphere/confusion/badge.png?branch=master)](https://coveralls.io/r/cryptosphere/confusion)
+[![Dependency Status](https://gemnasium.com/cryptosphere/confusion.png)](https://gemnasium.com/cryptosphere/confusion)
 
 > "The method of *confusion* is to make the relation between the simple
 > statistics of [the ciphertext] and the simple description of [the key] a very
