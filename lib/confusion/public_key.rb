@@ -1,14 +1,15 @@
 require 'rbnacl'
+require 'confusion/encoding'
 
 module Confusion
   class PublicKey
     def initialize(serialized_key)
-      bytes = Confusion.base32_decode(serialized_key)
+      bytes = Encoding.decode(serialized_key)
       @key  = RbNaCl::PublicKey.new(bytes)
     end
 
     def to_base32
-      Confusion.base32_encode(@key.to_bytes)
+      Encoding.encode(@key.to_bytes)
     end
   end
 end

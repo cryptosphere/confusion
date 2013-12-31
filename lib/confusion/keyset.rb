@@ -1,5 +1,3 @@
-require 'base32'
-
 module Confusion
   class Keyset
     DEFAULT_SIZE = 256
