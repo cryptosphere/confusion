@@ -19,10 +19,9 @@ module Confusion
 
     desc 'keygen OUTFILE', 'Create a random symmetric key in OUTFILE'
     def keygen(outfile)
-      require 'confusion'
-      key_bytes = RbNaCl::Random.random_bytes(RbNaCl::SecretBox.key_bytes)
-      key = "#{Identifiers::SYMMETRIC_KEY}:#{Encoding.encode(key_bytes)}"
-      File.write(outfile, key)
+      require 'confusion/keys/symmetric_key'
+      key = Keys::SymmetricKey.generate
+      File.write(outfile, key.to_uri)
       logger.info "Wrote a random #{Identifiers::SYMMETRIC_KEY} to #{File.expand_path(outfile)}"
     end
 

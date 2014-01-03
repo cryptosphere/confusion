@@ -16,14 +16,23 @@ module Confusion
 
       attr_reader :bytes
 
-      KEY_PATTERN = /\A#{Regexp.escape(Identifiers::SYMMETRIC_KEY)}:([a-z0-9]{52})\z/
+      KEY_PATTERN = /\A#{Regexp.escape(URI_PREFIX)}:([a-z0-9]{52})\z/
+
+      # Generate a new symmetric key using libsodium's built-in random number
+      # generator (which uses /dev/random on *IX or CryptGenRandom on Windows)
+      #
+      # @return [Confusion::Keys::SymmetricKey] random symmetric key
+      def self.generate
+        key_bytes = RbNaCl::Random.random_bytes(RbNaCl::SecretBox.key_bytes)
+        new(key_bytes)
+      end
 
       # Parse a symmetric key URI. These URIs look like the following:
       #
       #     crypt.key+xsalsa20poly1305+base32c:xxxxxxxx.....
       #
       # @param key_uri [String] URI representing a key to decode
-      # @return [Confusion::Encryption::SymmetricKey] symmetric key object
+      # @return [Confusion::Keys::SymmetricKey] symmetric key object
       def self.parse(key_uri)
         parsed_key = key_uri.force_encoding('BINARY')[KEY_PATTERN, 1] or
           raise ParseError, "couldn't parse symmetric key"
@@ -34,7 +43,7 @@ module Confusion
       # Create a symmetric key from the given byte array
       #
       # @param key_bytes [String] byte array representing a symmetric key
-      # @return [Confusion::Encryption::SymmetricKey] symmetric key objecf
+      # @return [Confusion::Keys::SymmetricKey] symmetric key objecf
       def initialize(key_bytes)
         @bytes = RbNaCl::Util.check_string(
           key_bytes.force_encoding('BINARY'),
@@ -63,6 +72,13 @@ module Confusion
         plaintext  = box.decrypt(ciphertext)
         File.write(outfile, plaintext)
         true
+      end
+
+      # Return this key as a serialized URI
+      #
+      # @return [String] key encoded as a URI
+      def to_uri
+        "#{URI_PREFIX}:#{Encoding.encode(bytes)}"
       end
 
     #######
