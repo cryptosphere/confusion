@@ -1,7 +1,7 @@
 require 'base32'
 
 module Confusion
-  # Encode binary strings in a text format (lower case base32)
+  # Encode and parse strings in "base32c" format (i.e. base32, but lower case)
   module Encoding
     module_function
 

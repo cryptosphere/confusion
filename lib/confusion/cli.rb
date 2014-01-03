@@ -29,28 +29,10 @@ module Confusion
     desc 'encrypt INFILE OUTFILE', 'Encrypt INFILE with a password or full strength key'
     method_option :key, type: 'string', aliases: '-k'
     def encrypt(infile, outfile)
-      require 'confusion'
-
-      # Only support full-strength symmetric keys for now
-      unless options[:key]
-        logger.error "No --key given"
-        exit 1
-      end
-
-      key_path   = File.expand_path(options[:key])
-      key_text   = File.read(key_path).force_encoding('BINARY')
-      key_base32 = key_text[/\A#{Regexp.escape(Identifiers::SYMMETRIC_KEY)}:([a-z0-9]{52})\z/, 1]
-
-      unless key_base32
-        logger.error "Failed to parse #{Identifiers::SYMMETRIC_KEY} from #{key_path}"
-        exit 1
-      end
-
-      key_bytes  = Encoding.decode(key_base32)
-      secret_box = RbNaCl::RandomNonceBox.from_secret_key(key_bytes)
+      box = key_box(options)
 
       plaintext  = File.read(infile).force_encoding('BINARY')
-      ciphertext = secret_box.encrypt(plaintext)
+      ciphertext = box.encrypt(plaintext)
       File.write(outfile, ciphertext)
       logger.info "Encrypted #{File.expand_path(infile)} into #{File.expand_path(outfile)}"
     end
@@ -58,33 +40,33 @@ module Confusion
     desc 'decrypt INFILE OUTFILE', 'Decrypt INFILE with a password or full strength key'
     method_option :key, type: 'string', aliases: '-k'
     def decrypt(infile, outfile)
-      require 'confusion'
-
-      # Only support full-strength symmetric keys for now
-      unless options[:key]
-        logger.error "No --key given"
-        exit 1
-      end
-
-      key_path   = File.expand_path(options[:key])
-      key_text   = File.read(key_path).force_encoding('BINARY')
-      key_base32 = key_text[/\A#{Regexp.escape(Identifiers::SYMMETRIC_KEY)}:([a-z0-9]{52})\z/, 1]
-
-      unless key_base32
-        logger.error "Failed to parse #{Identifiers::SYMMETRIC_KEY} from #{key_path}"
-        exit 1
-      end
-
-      key_bytes  = Encoding.decode(key_base32)
-      secret_box = RbNaCl::RandomNonceBox.from_secret_key(key_bytes)
+      box = key_box(options)
 
       ciphertext = File.read(infile).force_encoding('BINARY')
-      plaintext  = secret_box.decrypt(ciphertext)
+      plaintext  = box.decrypt(ciphertext)
       File.write(outfile, plaintext)
       logger.info "Decrypted #{File.expand_path(infile)} info #{File.expand_path(outfile)}"
     end
 
     no_commands do
+      def key_box(options)
+        require 'confusion/keys/symmetric_key'
+
+        # Only support full-strength symmetric keys for now
+        unless options[:key]
+          logger.error "No --key given"
+          exit 1
+        end
+
+        key_path = File.expand_path(options[:key])
+        key_uri  = File.read(key_path)
+
+        Keys::SymmetricKey.parse(key_uri).box
+      rescue ParseError
+        logger.error "Failed to parse #{Keys::SymmetricKey::URI_PREFIX} from #{key_path}"
+        exit 1
+      end
+
       def logger
         Confusion.logger
       end

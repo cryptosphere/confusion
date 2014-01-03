@@ -1,5 +1,6 @@
 require 'confusion/version'
 
+require 'confusion/exceptions'
 require 'confusion/identifiers'
 require 'confusion/keyset'
 require 'confusion/encrypted_store'
