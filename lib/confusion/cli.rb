@@ -29,27 +29,21 @@ module Confusion
     desc 'encrypt INFILE OUTFILE', 'Encrypt INFILE with a password or full strength key'
     method_option :key, type: 'string', aliases: '-k'
     def encrypt(infile, outfile)
-      box = key_box(options)
-
-      plaintext  = File.read(infile).force_encoding('BINARY')
-      ciphertext = box.encrypt(plaintext)
-      File.write(outfile, ciphertext)
+      key = parse_key(options)
+      key.encrypt_file(infile, outfile)
       logger.info "Encrypted #{File.expand_path(infile)} into #{File.expand_path(outfile)}"
     end
 
     desc 'decrypt INFILE OUTFILE', 'Decrypt INFILE with a password or full strength key'
     method_option :key, type: 'string', aliases: '-k'
     def decrypt(infile, outfile)
-      box = key_box(options)
-
-      ciphertext = File.read(infile).force_encoding('BINARY')
-      plaintext  = box.decrypt(ciphertext)
-      File.write(outfile, plaintext)
+      key = parse_key(options)
+      key.decrypt_file(infile, outfile)
       logger.info "Decrypted #{File.expand_path(infile)} info #{File.expand_path(outfile)}"
     end
 
     no_commands do
-      def key_box(options)
+      def parse_key(options)
         require 'confusion/keys/symmetric_key'
 
         # Only support full-strength symmetric keys for now
@@ -61,7 +55,7 @@ module Confusion
         key_path = File.expand_path(options[:key])
         key_uri  = File.read(key_path)
 
-        Keys::SymmetricKey.parse(key_uri).box
+        Keys::SymmetricKey.parse(key_uri)
       rescue ParseError
         logger.error "Failed to parse #{Keys::SymmetricKey::URI_PREFIX} from #{key_path}"
         exit 1

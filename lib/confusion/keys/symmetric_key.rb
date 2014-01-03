@@ -43,6 +43,32 @@ module Confusion
         )
       end
 
+      # Encrypt a file using this SymmetricKey
+      #
+      # @param infile  [String] path to input plaintext
+      # @param outfile [String] path to output ciphertext
+      def encrypt_file(infile, outfile)
+        plaintext  = File.read(infile).force_encoding('BINARY')
+        ciphertext = box.encrypt(plaintext)
+        File.write(outfile, ciphertext)
+        true
+      end
+
+      # Decrypt a file using this SymmetricKey
+      #
+      # @param infile  [String] path to input ciphertext
+      # @param outfile [String] path to output ciphertext
+      def decrypt_file(infile, outfile)
+        ciphertext = File.read(infile).force_encoding('BINARY')
+        plaintext  = box.decrypt(ciphertext)
+        File.write(outfile, plaintext)
+        true
+      end
+
+    #######
+    private
+    #######
+
       # Create a RbNaCl box-alike object for symmetric encryption from this key
       #
       # @return [RbNaCl::RandomNonceBox] a RandomNonceBox object using this key
