@@ -3,6 +3,8 @@
 require 'confusion'
 require 'lattice'
 
+I18n.enforce_available_locales = false
+
 # An experiment in unlinkable encrypted messaging
 module Confusion
   # Default address of the webapp
@@ -16,12 +18,14 @@ module Confusion
 
   require 'confusion/resources/asset'
   require 'confusion/resources/home'
+  require 'confusion/resources/setup'
 
   # The Confusion webapp
   App = Webmachine::Application.new do |app|
     app.routes do
       # Base web application routes
       add ['assets', '*'], Resources::Asset
+      add ['setup'],       Resources::Setup
       add ['*'], Resources::Home
     end
 
