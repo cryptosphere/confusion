@@ -2,18 +2,20 @@ require 'thor'
 require 'confusion'
 require 'logger'
 
+# An experiment in unlinkable encrypted messaging
 module Confusion
   self.logger = Logger.new(STDOUT)
 
+  # Confusion's command line interface
   class CLI < Thor
     include Thor::Actions
-
 
     desc 'server', 'Run the Confusion server'
     def server
       require 'confusion/app'
 
-      Confusion.logger.info "Starting web UI on http://#{Confusion::APP_ADDR}:#{Confusion::APP_PORT}"
+      uri = "http://#{APP_ADDR}:#{APP_PORT}/"
+      Confusion.logger.info "Starting web UI on #{uri}"
       Confusion::App.run
     end
 
@@ -47,12 +49,11 @@ module Confusion
 
         # Only support full-strength symmetric keys for now
         unless options[:key]
-          logger.error "No --key given"
+          logger.error 'No --key given'
           exit 1
         end
 
-        key_path = File.expand_path(options[:key])
-        key_uri  = File.read(key_path)
+        key_uri  = File.read File.expand_path(options[:key])
 
         Keys::SymmetricKey.parse(key_uri)
       rescue ParseError

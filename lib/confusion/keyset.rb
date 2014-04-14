@@ -1,4 +1,5 @@
 module Confusion
+  # Stores sets of Curve25519 Diffie-Hellman keys
   class Keyset
     DEFAULT_SIZE = 256
 

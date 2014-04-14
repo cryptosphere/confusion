@@ -34,8 +34,8 @@ module Confusion
       # @param key_uri [String] URI representing a key to decode
       # @return [Confusion::Keys::SymmetricKey] symmetric key object
       def self.parse(key_uri)
-        parsed_key = key_uri.force_encoding('BINARY')[KEY_PATTERN, 1] or
-          raise ParseError, "couldn't parse symmetric key"
+        parsed_key = key_uri.force_encoding('BINARY')[KEY_PATTERN, 1]
+        fail ParseError, "couldn't parse symmetric key" unless parsed_key
 
         new(Encoding.decode(parsed_key))
       end
@@ -48,7 +48,7 @@ module Confusion
         @bytes = RbNaCl::Util.check_string(
           key_bytes.force_encoding('BINARY'),
           RbNaCl::SecretBox.key_bytes,
-          "Secret key"
+          'Secret key'
         )
       end
 
@@ -81,9 +81,7 @@ module Confusion
         "#{URI_PREFIX}:#{Encoding.encode(bytes)}"
       end
 
-    #######
-    private
-    #######
+      private
 
       # Create a RbNaCl box-alike object for symmetric encryption from this key
       #

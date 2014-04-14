@@ -2,4 +2,4 @@ require "bundler/gem_tasks"
 
 Dir["tasks/**/*.rake"].each { |task| load task }
 
-task :default => :spec
+task :default => %w(spec rubocop)

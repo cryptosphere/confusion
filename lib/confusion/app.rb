@@ -1,15 +1,16 @@
 require 'confusion'
 require 'lattice'
 
+# An experiment in unlinkable encrypted messaging
 module Confusion
   # Default address of the webapp
-  APP_ADDR = "127.0.0.1"
+  APP_ADDR = '127.0.0.1'
 
   # Default port of the webapp
   APP_PORT = 1234
 
   # Root directory for static assets
-  APP_ROOT = File.expand_path("../../../webui", __FILE__)
+  APP_ROOT = File.expand_path('../../../webui', __FILE__)
 
   require 'confusion/resources/asset'
   require 'confusion/resources/home'
@@ -29,6 +30,7 @@ module Confusion
     end
   end
 
+  # Log requests to Confusion
   class RequestLogger
     def call(*args)
       handle_event(Webmachine::Events::InstrumentedEvent.new(*args))
@@ -36,20 +38,23 @@ module Confusion
 
     def handle_event(event)
       request  = event.payload[:request]
-      resource = event.payload[:resource]
-      code     = event.payload[:code]
-      uri      = URI(request.uri)
 
-      # Translate extended HTTP verbs via the magical query parameter
-      if request.method == "POST" && request.query['_method']
-        method = request.query['_method']
+      Confusion.logger.info format(
+        "\"%s %s\" %d %.1fms (%s)",
+        effective_method(request),
+        URI(request.uri).path,
+        event.payload[:code],
+        event.duration,
+        event.payload[:resource])
+    end
+
+    # Translate extended HTTP verbs via the magical query parameter
+    def effective_method
+      if request.method == 'POST' && request.query['_method']
+        request.query['_method']
       else
-        method = request.method
+        request.method
       end
-
-      Confusion.logger.info "\"%s %s\" %d %.1fms (%s)" % [
-        method, uri.path, code, event.duration, resource
-      ]
     end
   end
 

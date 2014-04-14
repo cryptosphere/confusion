@@ -7,6 +7,6 @@ end
 
 task "ci:sodium" => "lib/libsodium.so"
 
-task :ci => %w(ci:sodium spec)
+task :ci => %w(ci:sodium spec rubocop)
 
 CLEAN.add "lib/libsodium.*"

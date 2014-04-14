@@ -2,6 +2,7 @@ require 'rbnacl'
 require 'confusion/encoding'
 
 module Confusion
+  # Curve25519 Diffie-Hellman private key
   class PrivateKey
     def self.generate
       key = RbNaCl::PrivateKey.generate.to_bytes

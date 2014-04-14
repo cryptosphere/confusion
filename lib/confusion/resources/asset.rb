@@ -2,28 +2,24 @@ require 'confusion/resource'
 
 module Confusion
   module Resources
+    # Serves static assets in the Web UI
     class Asset < Confusion::Resource
-      FILE_LIST  = Dir[File.join(APP_ROOT, "**", "*")].map { |f| f.sub(/^#{APP_ROOT}\//, '') }
+      FILE_LIST  = Dir[File.join(APP_ROOT, '**', '*')].map { |f| f.sub(/^#{APP_ROOT}\//, '') }
 
       def resource_exists?
         FILE_LIST.include? asset_path
       end
 
       def content_types_provided
-        return [["text/html", nil]] if request.path_tokens.empty?
+        return [['text/html', nil]] if request.path_tokens.empty?
         extension = request.path_tokens.last[/\.([a-z0-9]+)$/, 1]
 
         case extension
-        when 'htm', 'html'
-          [["text/html", :produce_file]]
-        when 'css'
-          [["text/css", :produce_file]]
-        when 'js'
-          [["text/javascript", :produce_file]]
-        when 'png'
-          [["image/png", :produce_file]]
-        else
-          [["text/html", nil]]
+        when 'htm', 'html' then [['text/html', :produce_file]]
+        when 'css'         then [['text/css', :produce_file]]
+        when 'js'          then [['text/javascript', :produce_file]]
+        when 'png'         then [['image/png', :produce_file]]
+        else                    [['text/html', nil]]
         end
       end
 
@@ -32,7 +28,7 @@ module Confusion
       end
 
       def asset_path
-        request.path_tokens.join("/")
+        request.path_tokens.join('/')
       end
     end
   end

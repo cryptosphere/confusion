@@ -7,6 +7,7 @@ require 'confusion/encrypted_store'
 require 'confusion/private_key'
 require 'confusion/public_key'
 
+# An experiment in unlinkable encrypted messaging
 module Confusion
   class << self
     attr_accessor :logger

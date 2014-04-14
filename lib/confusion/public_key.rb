@@ -2,6 +2,7 @@ require 'rbnacl'
 require 'confusion/encoding'
 
 module Confusion
+  # Curve25519 Diffie-Hellman public key
   class PublicKey
     def initialize(serialized_key)
       bytes = Encoding.decode(serialized_key)
