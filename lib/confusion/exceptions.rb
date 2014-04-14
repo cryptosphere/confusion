@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # An experiment in unlinkable encrypted messaging
 module Confusion
   # Couldn't understand a given text string which was supposed to represent

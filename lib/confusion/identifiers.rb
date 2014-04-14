@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Confusion
   # Identifiers for keys used within Confusion
   module Identifiers

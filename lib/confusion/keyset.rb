@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Confusion
   # Stores sets of Curve25519 Diffie-Hellman keys
   class Keyset
