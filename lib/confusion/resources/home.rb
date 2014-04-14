@@ -7,8 +7,11 @@ module Confusion
     # Handles '/' for the Confusion web UI
     class Home < Confusion::Resource
       def to_html
-        # Hax serve a static file!
-        File.read File.join(APP_ROOT, 'index.html')
+        if Confusion.store.created?
+          File.read File.join(APP_ROOT, 'index.html')
+        else
+          File.read File.join(APP_ROOT, 'setup.html')
+        end
       end
     end
   end

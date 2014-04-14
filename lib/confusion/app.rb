@@ -51,7 +51,7 @@ module Confusion
     end
 
     # Translate extended HTTP verbs via the magical query parameter
-    def effective_method
+    def effective_method(request)
       if request.method == 'POST' && request.query['_method']
         request.query['_method']
       else

@@ -14,6 +14,9 @@ require 'confusion/keys/symmetric_key'
 # An experiment in unlinkable encrypted messaging
 module Confusion
   class << self
-    attr_accessor :logger
+    attr_accessor :logger, :store
   end
 end
+
+# Initialize encrypted storage directory
+Confusion.store = Confusion::EncryptedStore.new(File.join(Dir.home, '.confusion'))
