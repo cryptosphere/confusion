@@ -3,19 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>CONFUSION</title>
-  <meta name="description" content="An easy-to-use system for confidential messaging">
+  <meta name="description" content="An experiment in unlinkable encrypted messaging">
   <meta name="author" content="Tony Arcieri">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <!-- Le styles -->
   <link href="/assets/css/bootstrap.css" rel="stylesheet" />
   <link href="/assets/css/style.css" rel="stylesheet" />
   <link href="/assets/css/setup.css" rel="stylesheet" />
-
-  <!-- Le fav and touch icons -->
   <link href="/assets/img/icon.png" rel="shortcut icon" />
-
-  <script src="/assets/js/jquery-2.0.3.js"></script>
 </head>
 
 <body>
@@ -39,12 +34,14 @@
     </h2>
 
     <div id="password">
-      <input id="passfield" type="password" autofocus="autofocus"></input>
-      <button id="passbutton" class="btn btn-default btn-primary">Create</button>
+      <form id="setup-form" action="/setup" method="post">
+        <input id="passfield" type="password" autofocus="autofocus"></input>
+        <button id="passbutton" class="btn btn-default btn-primary">Create</button>
+      </form>
     </div>
   </div>
+
+  <script src="/assets/js/jquery-2.0.3.js"></script>
+  <script src="/assets/js/setup.js"></script>
 </body>
-
-<script src="/assets/js/password.js"></script>
-
 </html>
