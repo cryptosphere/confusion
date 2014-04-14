@@ -6,8 +6,10 @@ require 'confusion/exceptions'
 require 'confusion/identifiers'
 require 'confusion/keyset'
 require 'confusion/encrypted_store'
-require 'confusion/private_key'
-require 'confusion/public_key'
+
+require 'confusion/keys/private_key'
+require 'confusion/keys/public_key'
+require 'confusion/keys/symmetric_key'
 
 # An experiment in unlinkable encrypted messaging
 module Confusion

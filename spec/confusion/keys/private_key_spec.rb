@@ -2,11 +2,11 @@
 
 require 'spec_helper'
 
-describe Confusion::PrivateKey do
+describe Confusion::Keys::PrivateKey do
   subject { described_class.generate }
 
   it 'calculates a public key' do
-    expect(subject.public_key).to be_a Confusion::PublicKey
+    expect(subject.public_key).to be_a Confusion::Keys::PublicKey
   end
 
   it 'serializes to Base32' do
