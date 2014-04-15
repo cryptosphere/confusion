@@ -18,7 +18,10 @@ module Confusion
 
       accept_content_type 'application/x-www-form-urlencoded' => :accept_form
       def accept_form
-        puts "Got form!"
+        form =  URI.decode_www_form(request.body.to_s)
+        _, password = form.select { |name, _| name == "password-field" }.first
+
+        puts "Got password: #{password}"
       end
     end
   end
