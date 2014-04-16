@@ -1,68 +1,51 @@
 # encoding: utf-8
 
 require 'confusion'
-require 'lattice'
+require 'reel/rack'
+require 'sinatra'
+require 'secure_headers'
 
-I18n.enforce_available_locales = false
+::SecureHeaders::Configuration.configure do |config|
+  config.hsts                   = { max_age: 157788000, include_subdomains: true }
+  config.x_frame_options        = 'DENY'
+  config.x_content_type_options = 'nosniff'
+  config.x_xss_protection       = { value: 1, mode: 'block' }
+  config.csp                    = { default_src: 'self', enforce: true }
+end
 
 # An experiment in unlinkable encrypted messaging
 module Confusion
-  # Default address of the webapp
-  APP_ADDR = '127.0.0.1'
+  class App < Sinatra::Base
+    include SecureHeaders
 
-  # Default port of the webapp
-  APP_PORT = 1234
-
-  # Root directory for static assets
-  APP_ROOT = File.expand_path('../../../webui', __FILE__)
-
-  require 'confusion/resources/asset'
-  require 'confusion/resources/home'
-  require 'confusion/resources/setup'
-
-  # The Confusion webapp
-  App = Webmachine::Application.new do |app|
-    app.routes do
-      # Base web application routes
-      add ['assets', '*'], Resources::Asset
-      add ['setup'],       Resources::Setup
-      add ['*'], Resources::Home
+    configure :production, :development do
+      enable :logging
     end
 
-    app.configure do |config|
-      config.ip      = APP_ADDR
-      config.port    = APP_PORT
-      config.adapter = :Reel
-    end
-  end
+    ASSET_ROOT = Pathname.new(File.expand_path('../../../webui', __FILE__))
 
-  # Log requests to Confusion
-  class RequestLogger
-    def call(*args)
-      handle_event(Webmachine::Events::InstrumentedEvent.new(*args))
-    end
-
-    def handle_event(event)
-      request  = event.payload[:request]
-
-      Confusion.logger.info format(
-        "\"%s %s\" %d %.1fms (%s)",
-        effective_method(request),
-        URI(request.uri).path,
-        event.payload[:code],
-        event.duration,
-        event.payload[:resource])
+    def self.rack_app
+      app = new
+      Rack::Builder.new do
+        use Rack::CommonLogger
+        use Rack::ShowExceptions
+        use Rack::Static, urls: %w(/css /img /js), root: ASSET_ROOT
+        run app
+      end
     end
 
-    # Translate extended HTTP verbs via the magical query parameter
-    def effective_method(request)
-      if request.method == 'POST' && request.query['_method']
-        request.query['_method']
+    def self.run(host, port)
+      Reel::Rack::Server.new(rack_app, Host: host, Port: port)
+    end
+
+    get '/' do
+      set_csp_header
+      if Confusion.store.created?
+        ASSET_ROOT.join('index.html').read
       else
-        request.method
+        ASSET_ROOT.join('setup.html').read
       end
     end
   end
-
-  Webmachine::Events.subscribe('wm.dispatch', RequestLogger.new)
 end
+

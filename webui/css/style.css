@@ -33,10 +33,9 @@ h2 {
 
 #password input {
   width: 350px;
-  height: 60px;
   padding: 5px;
   margin: 5px;
-  font-size: 36px;
+  font-size: 32px;
   letter-spacing: 8px
   background: #dddddd;
   border: 5px solid #888888;

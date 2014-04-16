@@ -13,12 +13,12 @@ module Confusion
     include Thor::Actions
 
     desc 'server', 'Run the Confusion server'
+    method_option :host, default: '127.0.0.1', aliases: 'h'
+    method_option :port, default: 1234
     def server
       require 'confusion/app'
-
-      uri = "http://#{APP_ADDR}:#{APP_PORT}/"
-      Confusion.logger.info "Starting web UI on #{uri}"
-      Confusion::App.run
+      Confusion::App.run(options[:host], options[:port])
+      sleep
     end
 
     desc 'keygen OUTFILE', 'Create a random symmetric key in OUTFILE'

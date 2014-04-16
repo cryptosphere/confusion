@@ -20,7 +20,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'thor'
-  spec.add_runtime_dependency 'lattice'
+  spec.add_runtime_dependency 'reel-rack'
+  spec.add_runtime_dependency 'sinatra'
+  spec.add_runtime_dependency 'secure_headers'
   spec.add_runtime_dependency 'rbnacl'
   spec.add_runtime_dependency 'base32'
 
