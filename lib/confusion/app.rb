@@ -27,7 +27,7 @@ module Confusion
     def self.rack_app
       app = new
       Rack::Builder.new do
-        use Rack::CommonLogger
+        use Rack::CommonLogger, STDOUT
         use Rack::ShowExceptions
         use Rack::Static, urls: %w(/css /img /js), root: ASSET_ROOT
         run app
