@@ -6,7 +6,7 @@ require 'sinatra'
 require 'secure_headers'
 
 ::SecureHeaders::Configuration.configure do |config|
-  config.hsts                   = { max_age: 157788000, include_subdomains: true }
+  config.hsts                   = { max_age: 315_360_000, include_subdomains: true }
   config.x_frame_options        = 'DENY'
   config.x_content_type_options = 'nosniff'
   config.x_xss_protection       = { value: 1, mode: 'block' }
@@ -15,6 +15,7 @@ end
 
 # An experiment in unlinkable encrypted messaging
 module Confusion
+  # Sinatra application behind the web API
   class App < Sinatra::Base
     include SecureHeaders
 
@@ -48,4 +49,3 @@ module Confusion
     end
   end
 end
-
