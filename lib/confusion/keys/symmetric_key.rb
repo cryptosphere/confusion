@@ -87,9 +87,9 @@ module Confusion
 
       # Create a RbNaCl box-alike object for symmetric encryption from this key
       #
-      # @return [RbNaCl::RandomNonceBox] a RandomNonceBox object using this key
+      # @return [RbNaCl::SimpleBox] a SimpleBox object using this key.
       def box
-        RbNaCl::RandomNonceBox.from_secret_key(@bytes)
+        RbNaCl::SimpleBox.from_secret_key(@bytes)
       end
     end
   end
