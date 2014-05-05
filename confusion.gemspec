@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.version       = Confusion::VERSION
   spec.authors       = ['Tony Arcieri']
   spec.email         = ['bascule@gmail.com']
-  spec.description   = 'An experiment in fingerprint-free messaging'
-  spec.summary       = 'Confusion is an experimental fingerprint-free messaging system for unlinkable rendezvous'
+  spec.description   = 'An experiment in fingerprint-free encrypted messaging'
+  spec.summary       = 'Confusion is an experimental fingerprint-free encrypted messaging system'
   spec.homepage      = 'https://github.com/cryptosphere/confusion'
   spec.license       = 'MIT'
 
