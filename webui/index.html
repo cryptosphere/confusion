@@ -42,9 +42,11 @@
   <div id="door-r" class="door-outer">
     <div class="door-inner">
       <div id="password" class="sphere">
-        <div id="passprompt">PASSWORD:</div>
-          <input id="password-field" type="password" autofocus="autofocus"></input>
-          <button id="passsword-button" class="btn btn-default btn-primary">Unlock</button>
+        <div id="password-prompt">PASSWORD:</div>
+          <form id="password-form" method="post" action="/login" accept-charset="UTF-8">
+            <input id="password-field" type="password" autofocus="autofocus" autocomplete="off">
+            <input id="password-btn" class="btn btn-default btn-primary btn-lg" value="Unlock">
+          </form>
         </div>
       </div>
     </div>
