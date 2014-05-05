@@ -1,5 +1,5 @@
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
 
-Dir["tasks/**/*.rake"].each { |task| load task }
+Dir['tasks/**/*.rake'].each { |task| load task }
 
-task :default => %w(spec rubocop)
+task default: %w(spec rubocop)
