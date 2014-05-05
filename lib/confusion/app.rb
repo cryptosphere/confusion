@@ -39,6 +39,10 @@ module Confusion
       Reel::Rack::Server.new(rack_app, Host: host, Port: port)
     end
 
+    post '/setup/' do
+      Confusion.store.create(params['password-field'])
+    end
+
     get '/' do
       set_csp_header
       if Confusion.store.created?
