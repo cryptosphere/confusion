@@ -16,7 +16,7 @@ module Confusion
     SALT_BYTES = 8
 
     # Number of iterations to use for PKBDF2
-    PBKDF2_ITERATIONS = 100000
+    PBKDF2_ITERATIONS = 100_000
 
     def initialize(path)
       @path = Pathname.new File.expand_path(path)
@@ -27,18 +27,16 @@ module Confusion
     end
 
     def create(password)
-      raise 'already created' if created?
-      salt = RbNaCl::Random.random_bytes(SALT_BYTES)
-
+      fail 'already created' if created?
+      salt        = RbNaCl::Random.random_bytes(SALT_BYTES)
       fingerprint = RbNaCl::Hash.sha256(pbkdf2(password, salt))
-      config = {
-        kdf:         "ordo.pbkdf:///pbkdf2-sha512+base32c?c=#{PBKDF2_ITERATIONS}&salt=#{Encoding.encode(salt)}",
+      config      = {
+        kdf:         "ordo.pbkdf:///pbkdf2-sha512+base32c?c=#{PBKDF2_ITERATIONS}" \
+                     "&salt=#{Encoding.encode(salt)}",
         fingerprint: "ni://sha256;#{Base64.urlsafe_encode64(fingerprint)}"
       }
-
       FileUtils.mkdir_p(path)
       File.write(config_path, JSON.pretty_generate(config))
-      true
     end
 
     private
