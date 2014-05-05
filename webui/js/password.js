@@ -5,6 +5,8 @@ function openSesame() {
   $("#door-r").addClass("door-moving");
   $("#door-l").css("transform", "translateX(-150%)");
   $("#door-r").css("transform", "translateX(150%)");
+
+  return false;
 }
 
-$("#password-button").click(openSesame);
+$("#password-form").submit(openSesame);
