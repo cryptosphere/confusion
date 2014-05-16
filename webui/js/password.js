@@ -10,6 +10,12 @@ function openSesame() {
 }
 
 function passwordIncorrect() {
+  /* Shake it! */
+  var sphere = $("#password-sphere-outer");
+  sphere.addClass("denied");
+  setTimeout(function() { sphere.removeClass("denied") }, 500);
+
+  /* Angrily! */
   var overlay = $("#password-sphere-overlay");
   overlay.fadeTo(0, 1);
   overlay.show();
