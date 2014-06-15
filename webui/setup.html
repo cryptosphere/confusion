@@ -34,9 +34,13 @@
     </h2>
 
     <div id="password">
-      <form id="setup-form" action="/setup" method="post">
-        <input id="password-field" name="password-field" placeholder="Password" type="password" autofocus="autofocus">
-        <button id="passsword-button" class="btn btn-default btn-primary">Create</button>
+      <form id="setup-form" class="form-inline" action="/setup" method="post">
+        <div class="form-group">
+          <input name="password-field" class="form-control" placeholder="Password" type="password" autofocus="autofocus">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-default btn-primary">Create</button>
+        </div>
       </form>
     </div>
   </div>
