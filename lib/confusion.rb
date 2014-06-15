@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'rbnacl/libsodium'
+
 require 'confusion/version'
 
 require 'confusion/exceptions'
