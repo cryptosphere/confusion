@@ -5,7 +5,3 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
-
-#password {
-  font-size: 1.2em;
-}
