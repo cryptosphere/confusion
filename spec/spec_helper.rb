@@ -6,3 +6,5 @@ Coveralls.wear!
 require 'rubygems'
 require 'bundler/setup'
 require 'confusion'
+
+RSpec.configure { |c| c.disable_monkey_patching! }
