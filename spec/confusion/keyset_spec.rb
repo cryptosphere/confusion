@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Confusion::Keyset do
+RSpec.describe Confusion::Keyset do
   it 'generates new keysets' do
     expect(described_class.generate).to be_a described_class
   end

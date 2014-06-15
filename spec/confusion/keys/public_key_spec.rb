@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Confusion::Keys::PublicKey do
+RSpec.describe Confusion::Keys::PublicKey do
   let(:base32_key) { 'n7v4dnrstqid7n3kdraib7ebzinlawv42efvhlalnmihmqyrkrhq' }
   subject { described_class.new(base32_key) }
 

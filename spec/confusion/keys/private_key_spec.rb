@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Confusion::Keys::PrivateKey do
+RSpec.describe Confusion::Keys::PrivateKey do
   subject { described_class.generate }
 
   it 'calculates a public key' do
