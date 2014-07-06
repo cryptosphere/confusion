@@ -5,7 +5,8 @@ function newUserSetup() {
     data:  $("#setup-form").serialize(),
     async: true,
     success: function () {
-      alert("Great success!");
+      $("#password-form").hide();
+      $("#success-message").fadeIn();
     },
     error: function(xhr, status, message) {
       alert("Horrible errors!");

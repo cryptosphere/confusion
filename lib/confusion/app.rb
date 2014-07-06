@@ -19,9 +19,16 @@ module Confusion
   class App < Sinatra::Base
     include SecureHeaders
 
-    configure :production, :development do
+    set :environment, :development
+
+    configure :development do
+      enable :logging, :dump_errors, :raise_errors
+    end
+    configure :production do
       enable :logging
     end
+
+    set :show_exceptions, true if development?
 
     ASSET_ROOT = Pathname.new(File.expand_path('../../../webui', __FILE__))
 

@@ -5,3 +5,21 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
+#success-message {
+  display: none;
+  padding-top: 20px;
+}
+
+#checkmark {
+  color: white;
+  background: #5cb85c;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  font-size: 100px;
+  line-height: 100px;
+  vertical-align: middle;
+  margin: 0 auto;
+}
