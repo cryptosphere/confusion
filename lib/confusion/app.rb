@@ -41,6 +41,7 @@ module Confusion
 
     post '/setup/' do
       Confusion.store.create(params['password-field'])
+      201
     end
 
     get '/' do
