@@ -2,7 +2,6 @@
 
 require 'json'
 require 'rbnacl'
-require 'openssl'
 require 'time'
 require 'fileutils'
 require 'base64'
@@ -12,11 +11,12 @@ module Confusion
   class EncryptedStore
     attr_reader :path
 
-    # Number of bytes to use for PBKDF salt
-    SALT_BYTES = 8
+    # Number of bytes to use for scrypt salt
+    SALT_BYTES = 32
 
-    # Number of iterations to use for PKBDF2
-    PBKDF2_ITERATIONS = 100_000
+    # scrypt work factor and memory factor (libsodium style)
+    SCRYPT_OPSLIMIT = 758_010
+    SCRYPT_MEMLIMIT = 5_432_947
 
     def initialize(path)
       @path = Pathname.new File.expand_path(path)
@@ -29,10 +29,9 @@ module Confusion
     def create(password)
       fail 'already created' if created?
       salt        = RbNaCl::Random.random_bytes(SALT_BYTES)
-      fingerprint = RbNaCl::Hash.sha256(pbkdf2(password, salt))
+      fingerprint = RbNaCl::Hash.sha256(scrypt(password, salt))
       config      = {
-        kdf:         "ordo.pbkdf:///pbkdf2-sha512+base32c?c=#{PBKDF2_ITERATIONS}" \
-                     "&salt=#{Encoding.encode(salt)}",
+        kdf:         scrypt_uri(salt),
         fingerprint: "ni://sha256;#{Base64.urlsafe_encode64(fingerprint)}"
       }
       FileUtils.mkdir_p(path)
@@ -46,8 +45,20 @@ module Confusion
       @path.join('config.json')
     end
 
-    def pbkdf2(password, salt, c = PBKDF2_ITERATIONS)
-      OpenSSL::PKCS5.pbkdf2_hmac(password, salt, c, 512, OpenSSL::Digest::SHA512.new)
+    def scrypt(password, salt)
+      RbNaCl::PasswordHash.scrypt(
+        password,
+        salt,
+        SCRYPT_OPSLIMIT,
+        SCRYPT_MEMLIMIT
+      )
+    end
+
+    def scrypt_uri(salt)
+      'ordo.pbkdf:///scrypt?' \
+      "opslimit=#{SCRYPT_OPSLIMIT}" \
+      "&memlimit=#{SCRYPT_MEMLIMIT}" \
+      "&salt=#{Encoding.encode(salt)}"
     end
   end
 end
