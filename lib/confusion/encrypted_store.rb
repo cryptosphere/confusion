@@ -37,6 +37,7 @@ module Confusion
       }
       FileUtils.mkdir_p(path)
       File.write(config_path, JSON.pretty_generate(config))
+      true
     end
 
     private
