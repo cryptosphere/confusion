@@ -59,5 +59,9 @@ module Confusion
         ASSET_ROOT.join('setup.html').read
       end
     end
+
+    post '/login/' do
+      201
+    end
   end
 end

@@ -23,15 +23,12 @@ function passwordIncorrect() {
 }
 
 function login() {
-  var password = $("#password-field").val();
-
   $.ajax({
     type: "POST",
     url: "/login/",
-    data: $("password-form").serialize(),
+    data: $("#password-form").serialize(),
     async: true,
     success: function(response, status, xhr) {
-      alert("success");
       openSesame();
     },
     error: function(xhr, status, message) {
