@@ -27,6 +27,10 @@ h2 {
   padding: 5px 10px;
 }
 
+.navbar-right {
+  display: none;
+}
+
 .content {
   display: none;
   background: white;
@@ -41,7 +45,7 @@ h2 {
   color: white;
 }
 
-.add-contact {
+.add-contact-button {
   margin: 5px;
 }
 

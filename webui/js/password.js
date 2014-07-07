@@ -7,6 +7,7 @@ function openSesame() {
   $("#door-r").css("transform", "translateX(150%)");
 
   $(".content").fadeIn(1500);
+  $(".navbar-right").fadeIn(1500);
 
   setTimeout(function() {
     $("#doors").remove();
