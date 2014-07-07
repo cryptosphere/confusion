@@ -6,6 +6,12 @@ function openSesame() {
   $("#door-l").css("transform", "translateX(-150%)");
   $("#door-r").css("transform", "translateX(150%)");
 
+  $(".content").fadeIn(1500);
+
+  setTimeout(function() {
+    $("#doors").remove();
+  }, 750);
+
   return false;
 }
 

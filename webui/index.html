@@ -1,60 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>CONFUSION</title>
-  <meta name="description" content="An easy-to-use system for confidential messaging">
-  <meta name="author" content="Tony Arcieri">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An easy-to-use system for confidential messaging">
+    <meta name="author" content="Tony Arcieri">
+    <link href="/img/icon.png" rel="icon" />
 
-  <link href="/css/bootstrap.css" rel="stylesheet" />
-  <link href="/css/password.css" rel="stylesheet" />
-  <link href="/css/style.css" rel="stylesheet" />
-  <link href="/img/icon.png" rel="shortcut icon" />
-</head>
+    <title>CONFUSION</title>
 
-<body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <a href="/" id="logo" class="brand"><img src="/img/logo.png" alt="CONFUSION"></a>
-    </div>
-  </div>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/password.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+  </head>
 
-  <div id="wrap" class="row">
-    <div class="container">
-      <div class="sidebar span2">
-        <table class="table table-striped">
-          <tr><td>Foo</td></tr>
-          <tr><td>Bar</td></tr>
-          <tr><td>Baz</td></tr>
-        </table>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a id="logo" class="navbar-brand" href="/"><img src="/img/logo.png" alt="CONFUSION"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
       </div>
-      <div class="span10">
-        Hello, world!
-      </div>
     </div>
-  </div>
 
-  <div id="doors">
-  <div id="door-l" class="door-outer">
-    <div class="door-inner"></div>
-  </div>
-  <div id="door-r" class="door-outer">
-    <div class="door-inner">
-      <div id="password-sphere-outer">
-        <div id="password-sphere-overlay"></div>
-        <div id="password-sphere">
-          <div id="password-prompt">PASSWORD:</div>
-            <form id="password-form" method="post" action="/login" accept-charset="UTF-8">
-              <input id="password-field" type="password" name="password" autofocus="autofocus" autocomplete="off">
-              <input id="password-btn" type="submit" class="btn btn-default btn-primary btn-lg" value="Unlock">
-            </form>
+    <div class="content container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="add-contact">
+              <button type="button" class="btn btn-success btn-block">&#x271a; Add Contact</button>
+            </li>
+            <li class="active"><a href="#">Alice</a></li>
+            <li><a href="#">Bob</a></li>
+            <li><a href="#">Carol</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Alice</h1>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A really cool message</td>
+                  <td>11:59 pm</td>
+                </tr>
+                <tr>
+                  <td>Totally secret stuff</td>
+                  <td>1:42 pm</td>
+                </tr>
+                <tr>
+                  <td>Testing 1 2 3</td>
+                  <td>10:00 am</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <script src="/js/jquery.js"></script>
-  <script src="/js/password.js"></script>
-</body>
+
+    <div id="doors">
+      <div id="door-l" class="door-outer">
+        <div class="door-inner"></div>
+      </div>
+      <div id="door-r" class="door-outer">
+        <div class="door-inner">
+          <div id="password-sphere-outer">
+            <div id="password-sphere-overlay"></div>
+            <div id="password-sphere">
+              <div id="password-prompt">PASSWORD:</div>
+                <form id="password-form" method="post" action="/login" accept-charset="UTF-8">
+                  <input id="password-field" type="password" name="password" autofocus="autofocus" autocomplete="off">
+                  <input id="password-btn" type="submit" class="btn btn-default btn-primary btn-lg" value="Unlock">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/password.js"></script>
+  </body>
 </html>
