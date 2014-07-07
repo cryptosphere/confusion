@@ -23,3 +23,7 @@ body {
   vertical-align: middle;
   margin: 0 auto;
 }
+
+.centered {
+  text-align: center;
+}
