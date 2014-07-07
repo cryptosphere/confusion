@@ -18,6 +18,10 @@ module Confusion
   class << self
     attr_accessor :logger, :store
   end
+
+  WORDLIST = File.read(File.expand_path('../../wordlists/en.txt', __FILE__)).split("\n")
+  WORDLIST.map(&:freeze)
+  WORDLIST.freeze
 end
 
 # Initialize encrypted storage directory

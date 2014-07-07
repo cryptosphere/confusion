@@ -4,6 +4,7 @@ require 'confusion'
 require 'reel/rack'
 require 'sinatra'
 require 'secure_headers'
+require 'securerandom'
 
 ::SecureHeaders::Configuration.configure do |config|
   config.hsts                   = { max_age: 315_360_000, include_subdomains: true }
@@ -62,6 +63,17 @@ module Confusion
 
     post '/login/' do
       201
+    end
+
+    get '/words' do
+      phrase = []
+
+      5.times do
+        index = SecureRandom.random_number(Confusion::WORDLIST.size)
+        phrase << Confusion::WORDLIST[index]
+      end
+
+      phrase.join(' ')
     end
   end
 end
