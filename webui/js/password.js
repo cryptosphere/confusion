@@ -9,9 +9,7 @@ function openSesame() {
   $(".content").fadeIn(1500);
   $(".navbar-right").fadeIn(1500);
 
-  setTimeout(function() {
-    $("#doors").remove();
-  }, 750);
+  setTimeout(function() { $("#doors").remove(); }, 750);
 
   return false;
 }
