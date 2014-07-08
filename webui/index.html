@@ -44,6 +44,7 @@
             <li class="add-contact-button">
               <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#add-contact">&#x271a; Add Contact</button>
             </li>
+            <li id="aliceline"><a href="#">Alice</a></li>
             <li id="bobline"><a href="#">Bob</a></li>
             <li id="caroline" class="active"><a href="#">Carol</a></li>
             <li><a href="#">Dan</a></li>
@@ -232,7 +233,7 @@
               Please enter a name for your contact, then enter the invite code they generated
               for you.
             </p>
-            <form role="form" id="create-invite-form" autocomplete="off">
+            <form role="form" id="accept-invite-form" autocomplete="off">
               <div class="form-group">
                 <label for="accept-contact-name">Contact Name</label>
                 <input id="accept-contact-name" type="text" class="form-control" placeholder="(e.g. Claude)">
@@ -245,6 +246,27 @@
               <button type="submit" class="btn btn-primary">Accept Invite</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="accepted-invite" tabindex="-1" role="dialog" aria-labelledby="accepted-invite-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="accepted-invite-label">Accepted Invite from Alice</h4>
+          </div>
+          <div class="modal-body">
+            <div id="checkmark">&#x2713;</div>
+            <h4>You can now send encrypted messages to Alice!</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Finish</button>
           </div>
         </div>
       </div>

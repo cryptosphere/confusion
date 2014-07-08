@@ -47,3 +47,15 @@ function acceptInvite() {
 }
 
 $("#accept-invite-button").click(acceptInvite);
+
+function recipientAccepted() {
+  $("#accept-invite").modal("hide");
+  $("#aliceline").addClass("active");
+  $("#aliceline").fadeIn();
+
+  setTimeout(function() { $("#accepted-invite").modal("show"); }, 100);
+
+  return false;
+}
+
+$("#accept-invite-form").submit(recipientAccepted);
