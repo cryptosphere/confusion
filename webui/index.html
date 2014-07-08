@@ -44,15 +44,16 @@
             <li class="add-contact-button">
               <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#add-contact">&#x271a; Add Contact</button>
             </li>
-            <li class="active"><a href="#">Alice</a></li>
-            <li><a href="#">Bob</a></li>
-            <li><a href="#">Carol</a></li>
+            <li id="bobline"><a href="#">Bob</a></li>
+            <li id="caroline" class="active"><a href="#">Carol</a></li>
+            <li><a href="#">Dan</a></li>
+            <li><a href="#">Frank</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <div class="page-header">
             <button id="compose-button" type="button" class="btn btn-primary">New Message</button>
-            <h1>Alice</h1>
+            <h1>Carol</h1>
           </div>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -121,7 +122,7 @@
               <span aria-hidden="true">&times;</span>
               <span class="sr-only">Close</span>
             </button>
-            <h4 class="modal-title" id="add-contact-label">Create Invite Code</h4>
+            <h4 class="modal-title" id="create-invite-code-label">Create Invite Code</h4>
           </div>
           <div class="modal-body">
             <p>
@@ -132,7 +133,7 @@
             <form role="form" id="create-invite-form" autocomplete="off">
               <div class="form-group">
                 <label for="new-contact-name">Contact Name</label>
-                <input id="new-contact-name" type="text" class="form-control" placeholder="Claude Shannon">
+                <input id="new-contact-name" type="text" class="form-control" placeholder="(e.g. Claude)">
               </div>
               <label for="new-contact-code">Invite Code</label>
               <div class="form-group form-inline">
@@ -148,7 +149,7 @@
       </div>
     </div>
 
-    <div class="modal fade" id="do-the-dance" tabindex="-1" role="dialog" aria-labelledby="create-invite-code-label" aria-hidden="true">
+    <div class="modal fade" id="do-the-dance" tabindex="-1" role="dialog" aria-labelledby="do-the-dance-label" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -156,7 +157,7 @@
               <span aria-hidden="true">&times;</span>
               <span class="sr-only">Close</span>
             </button>
-            <h4 class="modal-title" id="add-contact-label">Give Invite Code to Bob</h4>
+            <h4 class="modal-title" id="do-the-dance-label">Give Invite Code to Bob</h4>
           </div>
           <div class="modal-body">
             <p>
@@ -190,6 +191,27 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="dance-successful" tabindex="-1" role="dialog" aria-labelledby="danced-successfully-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="danced-successfully-label">Bob Successfully Invited</h4>
+          </div>
+          <div class="modal-body">
+            <div id="checkmark">&#x2713;</div>
+            <h4>You can now send encrypted messages to Bob!</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Finish</button>
           </div>
         </div>
       </div>

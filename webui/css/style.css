@@ -119,6 +119,25 @@ h2 {
   font-weight: bold;
 }
 
+#checkmark {
+  color: white;
+  background: #5cb85c;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  font-size: 100px;
+  line-height: 100px;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+
+/* Placeholder for Bob in the contact list */
+#bobline {
+  display: none;
+}
+
+
 /* Everything below is a silly loading throbber */
 
 .gmb-loader {
