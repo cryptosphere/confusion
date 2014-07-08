@@ -16,7 +16,7 @@ function sendInvite() {
   setTimeout(function() { $("#do-the-dance").modal("show"); }, 100);
 
   /* Fake out completing the "dance" */
-  setTimeout(function() { inviteAccepted(); }, 3000);
+  setTimeout(function() { inviteAccepted(); }, 10000);
 
   return false;
 }
@@ -34,3 +34,16 @@ function inviteAccepted() {
 
   setTimeout(function() { $("#dance-successful").modal("show"); }, 100);
 }
+
+function acceptInvite() {
+  $("#add-contact").modal("hide");
+
+  setTimeout(function() {
+    $("#accept-invite").modal("show");
+    setTimeout(function() { $("#accept-contact-name").focus(); }, 500);
+  }, 100);
+
+  return true;
+}
+
+$("#accept-invite-button").click(acceptInvite);
