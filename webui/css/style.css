@@ -111,10 +111,90 @@ h2 {
 }
 
 #new-contact-code {
-  width: 92%;
+  width: 524px;
 }
 
 .contact-code {
   font-size: 1.2em;
   font-weight: bold;
+}
+
+/* Everything below is a silly loading throbber */
+
+.gmb-loader {
+  font-size: 0;
+  display: inline-block;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  vertical-align: middle;
+}
+
+.gmb-loader div {
+  background: #428bca;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  position: absolute;
+  animation: gmb-bounce 1.75s infinite;
+  -webkit-animation: gmb-bounce 1.75s infinite;
+  top: 50%;
+  margin-top: -5px;
+}
+
+.gmb-loader div:nth-child(2) {
+  animation-delay: 0.25s;
+  -webkit-animation-delay: 0.25s;
+  left: 50%;
+  margin-left: -5px;
+}
+
+.gmb-loader div:nth-child(3) {
+  animation-delay: 0.5s;
+  -webkit-animation-delay: 0.5s;
+  right: 0;
+}
+
+@keyframes gmb-bounce {
+  10% {
+    transform: translate3d(0, 10px, 0);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+    height: 10px;
+  }
+
+  14% {
+    height: 30px;
+  }
+
+  15% {
+    height: 10px;
+    transform: translate3d(0, -20px, 0);
+    animation-timing-function: cubic-bezier(0.8, 0, 0.8, 1);
+  }
+
+  35% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes gmb-bounce {
+  10% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+    height: 10px;
+  }
+
+  14% {
+    height: 30px;
+  }
+
+  15% {
+    height: 10px;
+    -webkit-transform: translate3d(0, -20px, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.8, 0, 0.8, 1);
+  }
+
+  35% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
 }

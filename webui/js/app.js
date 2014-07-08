@@ -10,3 +10,12 @@ function showCreateInviteCodeModal() {
 }
 
 $("#create-contact-button").click(showCreateInviteCodeModal);
+
+function sendInvite() {
+  $("#create-invite-code").modal("hide");
+  setTimeout(function() { $("#do-the-dance").modal("show"); }, 100);
+
+  return false;
+}
+
+$("#create-invite-form").submit(sendInvite);
