@@ -110,6 +110,10 @@ h2 {
   float: right;
 }
 
+#new-contact-code {
+  width: 92%;
+}
+
 .contact-code {
   font-size: 1.2em;
   font-weight: bold;

@@ -38,7 +38,7 @@ module Confusion
       Rack::Builder.new do
         use Rack::CommonLogger, STDOUT
         use Rack::ShowExceptions
-        use Rack::Static, urls: %w(/css /img /js), root: ASSET_ROOT
+        use Rack::Static, urls: %w(/css /img /js /fonts), root: ASSET_ROOT
         run app
       end
     end
