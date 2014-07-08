@@ -109,3 +109,8 @@ h2 {
 #compose-button {
   float: right;
 }
+
+.contact-code {
+  font-size: 1.2em;
+  font-weight: bold;
+}
