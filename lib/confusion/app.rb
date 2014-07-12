@@ -65,7 +65,7 @@ module Confusion
       201
     end
 
-    get '/words' do
+    get '/words/' do
       phrase = []
 
       5.times do

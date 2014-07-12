@@ -4,12 +4,22 @@ function showCreateInviteCodeModal() {
   setTimeout(function() {
     $("#create-invite-code").modal("show");
     setTimeout(function() { $("#new-contact-name").focus(); }, 500);
+    refreshInviteCode();
   }, 100);
 
   return true;
 }
 
 $("#create-contact-button").click(showCreateInviteCodeModal);
+
+
+function refreshInviteCode() {
+  $.get("/words/", function(data) {
+    $("#new-invite-code").val(data);
+  });
+}
+
+$("#invite-refresh").click(refreshInviteCode);
 
 function sendInvite() {
   $("#create-invite-code").modal("hide");

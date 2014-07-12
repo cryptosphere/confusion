@@ -136,10 +136,12 @@
                 <label for="new-contact-name">Contact Name</label>
                 <input id="new-contact-name" type="text" class="form-control" placeholder="(e.g. Claude)">
               </div>
-              <label for="new-contact-code">Invite Code</label>
+              <label for="new-invite-code">Invite Code</label>
               <div class="form-group form-inline">
-                <input id="new-contact-code" type="text" class="form-control contact-code" value="artificial accept common any later" readonly>
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span></button>
+                <input id="new-invite-code" type="text" class="form-control contact-code" value="" readonly>
+                <button id="invite-refresh" type="button" class="btn btn-primary">
+                  <span class="glyphicon glyphicon-refresh"></span>
+                </button>
               </div>
 
               <button type="submit" class="btn btn-primary">Send Invite</button>
@@ -164,7 +166,7 @@
             <p>
               Please give this code to Bob:
             </p>
-            <h4>artificial accept common any later</h4>
+            <h4 id="#selected-invite-code"></h4>
             <p>
               Here are some suggested ways you can give this code to Bob securely:
             </p>
