@@ -22,11 +22,23 @@ function refreshInviteCode() {
 $("#invite-refresh").click(refreshInviteCode);
 
 function sendInvite() {
-  $("#create-invite-code").modal("hide");
-  setTimeout(function() { $("#do-the-dance").modal("show"); }, 100);
+  $.ajax({
+    type: "POST",
+    url: "/contact/",
+    data: $("#create-invite-form").serialize(),
+    async: true,
+    success: function(response, status, xhr) {
+      $("#create-invite-code").modal("hide");
+      setTimeout(function() { $("#do-the-dance").modal("show"); }, 100);
 
-  /* Fake out completing the "dance" */
-  setTimeout(function() { inviteAccepted(); }, 10000);
+      /* Fake out completing the "dance" */
+      setTimeout(function() { inviteAccepted(); }, 10000);
+
+    },
+    error: function(xhr, status, message) {
+      alert("Horrible errors!");
+    }
+  });
 
   return false;
 }

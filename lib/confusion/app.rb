@@ -75,5 +75,9 @@ module Confusion
 
       phrase.join(' ')
     end
+
+    post '/contact/' do
+      400
+    end
   end
 end
