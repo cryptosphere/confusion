@@ -28,11 +28,13 @@ function sendInvite() {
     data: $("#create-invite-form").serialize(),
     async: true,
     success: function(response, status, xhr) {
+      $("#selected-invite-code").text($("#new-invite-code").val());
+
       $("#create-invite-code").modal("hide");
       setTimeout(function() { $("#do-the-dance").modal("show"); }, 100);
 
       /* Fake out completing the "dance" */
-      setTimeout(function() { inviteAccepted(); }, 10000);
+      /*setTimeout(function() { inviteAccepted(); }, 10000);*/
 
     },
     error: function(xhr, status, message) {
