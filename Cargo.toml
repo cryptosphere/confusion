@@ -6,5 +6,5 @@ authors = ["Tony Arcieri <bascule@gmail.com>"]
 [dependencies.iron]
 git = "https://github.com/iron/iron.git"
 
-[dependencies.static_file]
-git = "https://github.com/tarcieri/static-file.git"
+[dependencies.static]
+git = "https://github.com/iron/static.git"
