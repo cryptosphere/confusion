@@ -1,10 +1,13 @@
 [package]
+
 name = "confusion"
 version = "0.0.1"
 authors = ["Tony Arcieri <bascule@gmail.com>"]
 
-[dependencies.iron]
-git = "https://github.com/iron/iron.git"
+[dependencies.nickel]
 
-[dependencies.static]
-git = "https://github.com/iron/static.git"
+git = "https://github.com/nickel-org/nickel.rs.git"
+
+[dependencies.time]
+
+git = "https://github.com/rust-lang/time.git"

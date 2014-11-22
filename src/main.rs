@@ -1,35 +1,18 @@
-extern crate iron;
-extern crate static_file;
-extern crate mount;
+extern crate nickel;
+extern crate http;
 
 use std::io::net::ip::Ipv4Addr;
-use iron::{Iron, Request, Response, IronResult};
-use iron::status;
-use static_file::Static;
-use mount::Mount;
-
-fn root(_req: &mut Request) -> IronResult<Response> {
-  match Response::from_file(&Path::new("webui/index.html")) {
-    Ok(response) => { Ok(response) },
-    Err(_err)    => { Ok(Response::status(status::NotFound)) }
-  }
-}
-
-fn login(_req: &mut Request) -> IronResult<Response> {
-  Ok(Response::with(status::Ok, "Seems good bro"))
-}
+use nickel::{
+  Nickel,
+  StaticFilesHandler
+};
 
 fn main() {
-  let mut mount = Mount::new();
+  let mut server = Nickel::new();
+  let port = 3000;
 
-  mount.mount("/", root);
-  mount.mount("/login", login);
+  server.utilize(StaticFilesHandler::new("frontend/"));
 
-  mount.mount("/css",   Static::new(Path::new("webui/css")));
-  mount.mount("/img",   Static::new(Path::new("webui/img")));
-  mount.mount("/js",    Static::new(Path::new("webui/js")));
-  mount.mount("/fonts", Static::new(Path::new("webui/fonts")));
-
-  Iron::new(mount).listen(Ipv4Addr(127, 0, 0, 1), 3000);
-  println!("Listening on http://localhost:3000");
+  println!("Listening on http://localhost:{}", port);
+  server.listen(Ipv4Addr(127, 0, 0, 1), port);
 }
