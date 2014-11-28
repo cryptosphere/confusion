@@ -10,6 +10,8 @@ use nickel::{
   StaticFilesHandler
 };
 
+mod encrypted_store;
+
 fn main() {
   let addr = Ipv4Addr(127, 0, 0, 1);
   let port = 3000;
