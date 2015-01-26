@@ -1,13 +1,8 @@
 [package]
-
-name = "confusion"
+name    = "confusion"
 version = "0.0.1"
 authors = ["Tony Arcieri <bascule@gmail.com>"]
 
 [dependencies.nickel]
-
-git = "https://github.com/nickel-org/nickel.rs.git"
-
-[dependencies.time]
-
-git = "https://github.com/rust-lang/time.git"
+git    = "https://github.com/rgs1/nickel.rs.git"
+branch = "more-fixes-for-alpha"
