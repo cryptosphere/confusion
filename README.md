@@ -62,9 +62,7 @@ Coming soon!
 
 ## License
 
-Copyright (c) 2014 Tony Arcieri. Distributed under the MIT License. See
+Copyright (c) 2015 Tony Arcieri. Distributed under the MIT License. See
 LICENSE.txt for further details.
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/cryptosphere/confusion/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+> "I have nothing to offer anyone except my own confusion" -Jack Kerouac
