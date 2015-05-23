@@ -4,5 +4,3 @@ version = "0.0.1"
 authors = ["Tony Arcieri <bascule@gmail.com>"]
 
 [dependencies.nickel]
-git    = "https://github.com/rgs1/nickel.rs.git"
-branch = "more-fixes-for-alpha"
