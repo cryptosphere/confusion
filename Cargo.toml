@@ -1,0 +1,6 @@
+[package]
+name    = "confusion"
+version = "0.0.1"
+authors = ["Tony Arcieri <bascule@gmail.com>"]
+
+[dependencies.nickel]

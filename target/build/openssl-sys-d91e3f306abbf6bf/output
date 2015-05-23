@@ -1,0 +1,4 @@
+cargo:rustc-flags=-L native=/usr/lib
+cargo:rustc-flags=-l ssl
+cargo:rustc-flags=-l crypto
+cargo:rustc-flags=-l z

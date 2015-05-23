@@ -1,16 +1,4 @@
-rvm:
-  - 2.0.0
-  - 2.1.2
-  - ruby-head
-  - jruby
-  - jruby-head
-  - rbx-2
-
-matrix:
-  allow_failures:
-    - rvm: ruby-head
-    - rvm: jruby-head
-    - rvm: rbx-2
+language: rust
 
 notifications:
   irc: 'irc.freenode.org#cryptosphere'
