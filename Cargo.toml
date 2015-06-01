@@ -1,6 +1,12 @@
 [package]
-name    = "confusion"
-version = "0.0.1"
-authors = ["Tony Arcieri <bascule@gmail.com>"]
+name        = "confusion"
+description = "Easy-to-use anonymity-preserving encrypted messaging"
+homepage    = "https://github.com/cryptosphere/confusion"
+repository  = "https://github.com/cryptosphere/confusion.git"
+readme      = "README.md"
+keywords    = ["cookies", "authorization", "credentials"]
+license     = "MIT"
+version     = "0.0.1"
+authors     = ["Tony Arcieri <bascule@gmail.com>"]
 
 [dependencies.nickel]
